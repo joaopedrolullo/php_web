@@ -1,0 +1,77 @@
+#login {
+    height: 100%;
+}
+
+div.wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.wrapper div.content {
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    padding: 30px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    width: 360px;
+}
+
+div.wrapper div.content form {
+    display: flex;
+    flex-direction: column;
+}
+
+div.wrapper div.content form input {
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    height: 44px;
+    color: #333;
+    margin: 0 0 10px;
+}
+
+div.wrapper div.content form label {
+    line-height: 16px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+div.wrapper div.content form input::placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+div.wrapper div.content form button {
+    margin: 5px 0 0;
+    height: 44px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    background: #19222a;
+    color: #FFFFFF;
+    transition: background 0.2s;
+}
+
+div.wrapper div.content form button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+div.WithIcon input {
+    padding-left: 40px;
+    width: 100%;
+}
+
+div.WithIcon {
+    position: relative;
+}
+
+div.WithIcon i {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    padding: 6px 12px;
+    color: #aaa;
+}

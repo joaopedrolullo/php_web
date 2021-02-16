@@ -1,0 +1,30 @@
+aside.app-sidebar {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #19222a;
+}
+
+aside.app-sidebar a {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+aside.app-sidebar a i {
+    color: rgba(255, 255, 255, 0.9);
+    padding-right: 10px;
+}
+
+aside.app-sidebar li {
+    margin-left: 0;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+aside.app-sidebar li:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}

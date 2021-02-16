@@ -1,0 +1,72 @@
+#page-address {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+}
+
+#page-address .create-address {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    z-index: 10;
+    width: 64px;
+    height: 64px;
+    background: #19222a;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+#page-address .create-address:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#page-address-list {
+    padding: 20px;
+}
+
+#page-address-list main {
+    margin: 3.2rem auto;
+    width: 100%;
+}
+
+@media (min-width: 700px) {
+    #page-address-list {
+        max-width: 100%;
+    }
+    #page-address-list main {
+        padding: 3.2rem 0;
+        max-width: 740px;
+        margin: 0 auto;
+    }
+}
+
+
+/* GRID */
+
+#address-grid table {
+    width: 100%;
+    border-spacing: 0;
+    padding-top: 20px;
+}
+
+#address-grid table thead {
+    text-align: left;
+}
+
+#address-grid table thead tr th {
+    text-align: left;
+    color: #333;
+    padding: 0px 50px 10px 0px;
+}
+
+#address-grid table tbody {
+    text-align: left;
+}
+
+#address-grid th.column-icons-header {
+    padding-right: 20px !important;
+}
