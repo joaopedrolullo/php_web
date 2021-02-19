@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi';
 import { MdEdit, MdDelete } from 'react-icons/md';
 
@@ -17,6 +17,8 @@ interface User {
 }
 
 function UsersList() {
+  const history  = useHistory();
+
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
@@ -25,6 +27,14 @@ function UsersList() {
       setUsers(response.data);
     });
   }, []);
+
+  async function handleDelete(id: number) {
+    if(window.confirm("Deseja realmente excluir o cadastro?")){
+      await api.delete(`users/${id}`);
+    }
+
+    history.push('/users');
+  };
 
   return(
     <div id="page-users">
@@ -56,7 +66,7 @@ function UsersList() {
                       </Link>
                     </td>
                     <td className="column-icons">
-                      <Link to="/">
+                      <Link to='' onClick={() => handleDelete(user.id)}>
                         <i><MdDelete size={25} /></i>
                       </Link>
                     </td>

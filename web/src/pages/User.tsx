@@ -7,33 +7,43 @@ import api from '../services/api';
 
 import '../styles/pages/form.css';
 
-interface User {
-  id: number;
-  name: string;
-  login: string;
-  email: string;
-  password: string;
-}
-
 interface UserParams {
   id: string;
 }
 
 function User() {
   const { goBack } = useHistory();
+  const history  = useHistory();
 
   const params = useParams<UserParams>();
-  const [user, setUser] = useState<User>();
+  const [name, setName] = useState('');
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     api.get(`users/${params.id}`).then(response => {
-      setUser(response.data);
+      setName(response.data.name);
+      setLogin(response.data.login);
+      setEmail(response.data.email);
+      setPassword(response.data.password);
     });
   }, [params.id]);
 
-  if (!user) {
-    return <p>Carregando...</p>;
-  }
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+      
+    await api.put(`users/${params.id}`, {
+      name,
+      login,
+      email,
+      password
+    });
+
+    alert('Alteração realizada com sucesso!');
+
+    history.push('/users');
+  };
 
   return(
     <div id="page">
@@ -49,28 +59,28 @@ function User() {
           </button>
 
           <div id="form-panel">
-            <form action="/" method="" className="form">
+            <form onSubmit={handleSubmit} className="form">
               <div className="input-block">
                 <label htmlFor="nome">Nome</label>
-                <input id="nome" maxLength={100} value={user.name} />
+                <input id="nome" maxLength={100} defaultValue={name} onChange={event => setName(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="login">Login</label>
-                <input id="login" type="text" style={{ textTransform: 'uppercase' }} maxLength={40} value={user.login} />
+                <input id="login" type="text" style={{ textTransform: 'uppercase' }} maxLength={40} defaultValue={login} onChange={event => setLogin(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="email">E-mail</label>
-                <input id="email" type="email" maxLength={80} value={user.email} />
+                <input id="email" type="email" maxLength={80} defaultValue={email} onChange={event => setEmail(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="senha">Senha</label>
-                <input id="senha" type="password" maxLength={30} value={user.password} />
+                <input id="senha" type="password" maxLength={30} defaultValue={password} onChange={event => setPassword(event.target.value)} />
               </div>
               
-              <button className="confirm-button" type="submit" form="form">Confirmar</button>
+              <button className="confirm-button" type="submit" >Confirmar</button>
             </form>
           </div>
         </div>

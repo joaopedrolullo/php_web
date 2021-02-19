@@ -41,5 +41,32 @@ export default {
     await userRepository.save(user);
   
     return response.status(201).json(user);
+  },
+
+  async update(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const {
+      name,
+      login,
+      email,
+      password,
+    } = request.body;
+
+    const userRepository = getRepository(User);
+
+    const user = await userRepository.update(id, {name, login, email, password});
+
+    return response.json(user);
+  },
+
+  async delete(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const userRepository = getRepository(User);
+
+    const user = await userRepository.delete(id);
+
+    return response.json(user);
   }
 }
