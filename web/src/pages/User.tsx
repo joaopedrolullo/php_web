@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useHistory, useParams } from "react-router-dom";
-
 import { IoMdReturnLeft } from 'react-icons/io';
+
 import Sidebar from '../components/Sidebar';
 import api from '../services/api';
 
@@ -16,6 +16,7 @@ function User() {
   const history  = useHistory();
 
   const params = useParams<UserParams>();
+  
   const [name, setName] = useState('');
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');

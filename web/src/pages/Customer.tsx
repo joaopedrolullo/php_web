@@ -1,14 +1,54 @@
-import React from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import InputMask from "react-input-mask";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { IoMdReturnLeft } from 'react-icons/io';
 import Sidebar from '../components/Sidebar';
+import api from '../services/api';
 
 import '../styles/pages/form.css';
 
+interface CustomerParams {
+  id: string;
+}
+
 function Customer() {
   const { goBack } = useHistory();
+  const history  = useHistory();
+
+  const params = useParams<CustomerParams>();
+
+  const [name, setName] = useState('');
+  const [date_birth, setDateBirth] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [rg, setRg] = useState('');
+  const [phone, setPhone] = useState('');
+
+  useEffect(() => {
+    api.get(`users/${params.id}`).then(response => {
+      setName(response.data.name);
+      setDateBirth(response.data.date_birth);
+      setCpf(response.data.cpf);
+      setRg(response.data.rg);
+      setPhone(response.data.phone);
+    });
+  }, [params.id]);
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+      
+    await api.put(`customers/${params.id}`, {
+      name,
+      date_birth,
+      cpf,
+      rg,
+      phone
+    });
+
+    alert('Alteração realizada com sucesso!');
+
+    history.push('/customers');
+  };
 
   return(
     <div id="page">
@@ -24,7 +64,7 @@ function Customer() {
           </button>
 
           <div id="form-panel">
-            <form action="/" method="" className="form">
+            <form onSubmit={handleSubmit} className="form">
               <div className="input-block">
                 <label htmlFor="name">Nome</label>
                 <input id="name" maxLength={100} />

@@ -1,12 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi';
+import { MdEdit, MdDelete } from 'react-icons/md';
 import Sidebar from '../components/Sidebar';
-import GridCustomers from '../components/GridCustomers';
 
 import '../styles/pages/customers-list.css';
+import api from '../services/api';
+
+interface Customer {
+  id: number;
+  name: string;
+  date_birth: string;
+  cpf: string;
+  rg: string;
+  phone: string;
+}
 
 function CustomersList() {
+  const history  = useHistory();
+
+  const [customers, setCustomers] = useState<Customer[]>([]);
+
+  useEffect(() => {
+    api.get('users').then(response => {
+      setCustomers(response.data);
+    });
+  }, []);
+
+  async function handleDelete(id: number) {
+    if(window.confirm("Deseja realmente excluir o cadastro?")){
+      await api.delete(`customers/${id}`);
+    }
+
+    history.push('/customers');
+  };
+
   return (
     <div id="page-customers">
       <Sidebar />
@@ -30,7 +58,28 @@ function CustomersList() {
               </tr>
             </thead>
             <tbody>
-              <GridCustomers />
+              {customers.map(user => {
+                return(
+                <tr>
+                  <td className="column-icons">
+                    <Link to="/">
+                      <i><MdEdit size={25} /></i>
+                    </Link>
+                  </td>
+                  <td className="column-icons">
+                    <Link to="/">
+                      <i><MdDelete size={25} /></i>
+                    </Link>
+                  </td>
+                  <td>1</td>
+                  <td>João Pedro</td>
+                  <td>17/07/1996</td>
+                  <td>123456789</td>
+                  <td>987654321</td>
+                  <td>18984471887</td>
+                </tr>
+                )                
+              })}
             </tbody>
           </table>
         </div>
