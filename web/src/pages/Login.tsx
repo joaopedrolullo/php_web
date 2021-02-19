@@ -1,8 +1,7 @@
 import React, { FormEvent, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FaUserCircle, FaUserAlt } from 'react-icons/fa';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import axios from 'axios';
 
 import '../styles/global.css';
 import '../styles/pages/login.css';
@@ -21,9 +20,6 @@ function Login() {
 
     data.append('login', login);
     data.append('password', password);
-
-    axios.post('http://localhost:3000/backend/index.php', data)
-    .then(res => console.log(res.data));
   }
 
   return (
@@ -45,7 +41,11 @@ function Login() {
               <input type="password" placeholder="Senha" name="passwaord" maxLength={30} value={password} onChange={event => setPassword(event.target.value)} />
             </div>
 
-            <button type="submit">Entrar</button>
+            {/* <button type="submit">Entrar</button> */}
+
+            <Link to="/app">
+              <button>Entrar</button>
+            </Link>
           </form>
         </div>
       </div>
