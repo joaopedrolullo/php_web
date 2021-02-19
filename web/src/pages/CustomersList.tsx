@@ -22,7 +22,7 @@ function CustomersList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   useEffect(() => {
-    api.get('users').then(response => {
+    api.get('customers').then(response => {
       setCustomers(response.data);
     });
   }, []);
@@ -58,25 +58,25 @@ function CustomersList() {
               </tr>
             </thead>
             <tbody>
-              {customers.map(user => {
+              {customers.map(customer => {
                 return(
                 <tr>
                   <td className="column-icons">
-                    <Link to="/">
+                    <Link to={`/customer/${customer.id}`}>
                       <i><MdEdit size={25} /></i>
                     </Link>
                   </td>
                   <td className="column-icons">
-                    <Link to="/">
+                    <Link to='' onClick={() => handleDelete(customer.id)}>
                       <i><MdDelete size={25} /></i>
                     </Link>
                   </td>
-                  <td>1</td>
-                  <td>João Pedro</td>
-                  <td>17/07/1996</td>
-                  <td>123456789</td>
-                  <td>987654321</td>
-                  <td>18984471887</td>
+                  <td>{customer.id}</td>
+                  <td>{customer.name}</td>
+                  <td>{customer.date_birth}</td>
+                  <td>{customer.cpf}</td>
+                  <td>{customer.rg}</td>
+                  <td>{customer.phone}</td>
                 </tr>
                 )                
               })}
