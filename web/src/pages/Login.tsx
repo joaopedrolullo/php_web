@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { FaUserCircle, FaUserAlt } from 'react-icons/fa';
 import { RiLockPasswordFill } from 'react-icons/ri';
 
+import api from '../services/api';
+
 import '../styles/global.css';
 import '../styles/pages/login.css';
 
@@ -16,10 +18,16 @@ function Login() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const data = new FormData();
-
-    data.append('login', login);
-    data.append('password', password);
+    try{     
+      await api.post('login', {
+        login,
+        password
+      });
+      
+      history.push('/users');
+    }catch(error){
+      alert('Usuário ou senha inválidos!');
+    }   
   }
 
   return (
@@ -33,7 +41,7 @@ function Login() {
             
             <div className="WithIcon">
               <i><FaUserAlt/></i>
-              <input type="text" placeholder="Login" name="login" maxLength={40} value={login} onChange={event => setLogin(event.target.value)} />
+              <input type="text" placeholder="Login" name="login" style={{ textTransform: 'uppercase' }} maxLength={40} value={login} onChange={event => setLogin(event.target.value)} />
             </div>
 
             <div className="WithIcon">
@@ -41,7 +49,7 @@ function Login() {
               <input type="password" placeholder="Senha" name="passwaord" maxLength={30} value={password} onChange={event => setPassword(event.target.value)} />
             </div>
 
-            {/* <button type="submit">Entrar</button> */}
+            {/* <button className="confirm-button" type="submit" >Entrar</button> */}
 
             <Link to="/app">
               <button>Entrar</button>

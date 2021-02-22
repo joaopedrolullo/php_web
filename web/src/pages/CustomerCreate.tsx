@@ -46,13 +46,13 @@ function Customer() {
   };
 
   const [addressItems, setAddressItems] = useState([
-    { addresses: ''}
+    { address: ''}
   ]);
 
   function addNewAddressItem() {
     setAddressItems([
       ...addressItems,
-      { addresses: ''}
+      { address: ''}
     ])
   };
 
@@ -127,9 +127,9 @@ function Customer() {
                   
                   {addressItems.map((addressItem, index) => {
                     return (
-                      <div key={addressItem.addresses} >
+                      <div key={addressItem.address} className="schedule-item">
                         <select onChange={e => setAddressItemValue(index, 'addresses', e.target.value)}>
-                          <option>Selecione uma opção</option>
+                          <option value="">Selecione uma opção</option>
                           
                           {addresses.map((address) => (
                             <option value={address.id} >{address.address}</option>

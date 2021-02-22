@@ -48,22 +48,20 @@ export default {
   
     await customerRepository.save(customer);
 
-    const customer_id = customer.id;
+    const customerId = customer.id;
 
-    // const addressRepository = getRepository(CustomerAddress);    
-    
+    const addressRepository = getRepository(CustomerAddress);    
+
     const addressCustomer = addresses.map((addressItem: AddressItem) => {
       return {
-        address_id: addressItem.id,
-        customer_id,
+        addressId: addressItem.id,
+        customerId,
       };
     });
 
-    console.log(customer_id);
-    console.log(addresses);
-    console.log(addressCustomer.address_id);
-
-    // await addressRepository.save(addressCustomer);
+    for (let address of addressCustomer) {
+      await addressRepository.save(address);
+    }
 
     return response.status(201).json(customer);
   },

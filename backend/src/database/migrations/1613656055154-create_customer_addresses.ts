@@ -16,12 +16,12 @@ export class createCustomerAddresses1613656055154 implements MigrationInterface 
         },
 
         {
-          name: 'address_id',
+          name: 'addressId',
           type: 'integer'
         },
 
         {
-          name: 'customer_id',
+          name: 'customerId',
           type: 'integer'
         }
       ],
@@ -29,7 +29,7 @@ export class createCustomerAddresses1613656055154 implements MigrationInterface 
       foreignKeys: [
         {
           name: 'FkAddresses',
-          columnNames: ['address_id'],
+          columnNames: ['addressId'],
           referencedTableName: 'addresses',
           referencedColumnNames: ['id'],
           onUpdate: 'CASCADE',
@@ -38,7 +38,7 @@ export class createCustomerAddresses1613656055154 implements MigrationInterface 
 
         {
           name: 'FkCustomer',
-          columnNames: ['customer_id'],
+          columnNames: ['customerId'],
           referencedTableName: 'customer',
           referencedColumnNames: ['id'],
           onUpdate: 'CASCADE',

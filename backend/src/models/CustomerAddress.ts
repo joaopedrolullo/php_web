@@ -9,8 +9,8 @@ export default class CustomerAddresses {
   id: number;
 
   @OneToOne(type => Address) @JoinColumn() 
-  address_id: Address;
+  addressId: Address;
   
   @OneToOne(type => Customer) @JoinColumn() 
-  customer_id: Customer;
+  customerId: Customer;
 }
