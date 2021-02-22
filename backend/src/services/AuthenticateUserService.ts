@@ -16,9 +16,9 @@ class AuthenticateUserService {
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne({ where: { login, password } });
-
+    
     if (!user) {      
-      throw new Error('Erro');
+      throw new Error('Erro, usuário ou senha inválidos!');
     }
 
     return {

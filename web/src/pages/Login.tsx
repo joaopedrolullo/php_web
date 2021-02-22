@@ -18,13 +18,13 @@ function Login() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    try{     
+    try{
       await api.post('login', {
         login,
         password
       });
       
-      history.push('/users');
+      history.push('/app');
     }catch(error){
       alert('Usuário ou senha inválidos!');
     }   
@@ -41,7 +41,7 @@ function Login() {
             
             <div className="WithIcon">
               <i><FaUserAlt/></i>
-              <input type="text" placeholder="Login" name="login" style={{ textTransform: 'uppercase' }} maxLength={40} value={login} onChange={event => setLogin(event.target.value)} />
+              <input type="text" placeholder="Login" name="login" maxLength={40} value={login} onChange={event => setLogin(event.target.value)} />
             </div>
 
             <div className="WithIcon">

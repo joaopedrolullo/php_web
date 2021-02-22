@@ -59,9 +59,11 @@ export default {
       };
     });
 
-    for (let address of addressCustomer) {
-      await addressRepository.save(address);
-    }
+    // for (let address of addressCustomer) {
+    //   await addressRepository.save(address);
+    // }
+
+    await addressRepository.save(addressCustomer);
 
     return response.status(201).json(customer);
   },

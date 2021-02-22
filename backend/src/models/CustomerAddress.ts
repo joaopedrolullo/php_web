@@ -3,14 +3,16 @@ import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn} from 'typeorm';
 import Address from './Address';
 import Customer from './Customer';
 
-@Entity('customer_addresses')
+@Entity('customerAddresses')
 export default class CustomerAddresses {
   @PrimaryGeneratedColumn() 
   id: number;
 
-  @OneToOne(type => Address) @JoinColumn() 
+  @OneToOne(() => Address)
+  @JoinColumn({ name: 'addressId' })
   addressId: Address;
-  
-  @OneToOne(type => Customer) @JoinColumn() 
+
+  @OneToOne(() => Customer)
+  @JoinColumn({ name: 'customerId' })
   customerId: Customer;
 }

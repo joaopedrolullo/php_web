@@ -68,7 +68,7 @@ function User() {
 
               <div className="input-block">
                 <label htmlFor="login">Login</label>
-                <input id="login" type="text" style={{ textTransform: 'uppercase' }} maxLength={40} defaultValue={login} onChange={event => setLogin(event.target.value)} />
+                <input id="login" type="text" maxLength={40} defaultValue={login} onChange={event => setLogin(event.target.value)} />
               </div>
 
               <div className="input-block">

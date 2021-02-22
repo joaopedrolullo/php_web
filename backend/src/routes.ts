@@ -28,6 +28,6 @@ routes.put('/customers/:id', CustomersController.update);
 routes.delete('/customers/:id', CustomersController.delete);
 
 //Login
-routes.post('/login', LoginController.valida);
+routes.post('/login', LoginController.validate);
 
 export default routes;

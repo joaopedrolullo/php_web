@@ -47,7 +47,7 @@ export class createUsers1613657923735 implements MigrationInterface {
       .insert()
       .into('users')
       .values([
-        { name: 'Administrador', login: 'ADMIN', email: 'admin@admin.com', password: '1234' },
+        { name: 'Administrador', login: 'admin', email: 'admin@admin.com', password: '1234' },
       ])
       .execute()
   }
