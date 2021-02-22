@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 
-import UserLogin from '../models/UserLogin';
 import AuthenticateUserService from '../services/AuthenticateUserService';
 
 export default {
@@ -11,7 +9,7 @@ export default {
         login,
         password,
       } = request.body;
-      
+
       const authenticateUser = new AuthenticateUserService();
       
       const { user } = await authenticateUser.execute({

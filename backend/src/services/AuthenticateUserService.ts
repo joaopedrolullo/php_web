@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 
-import UserLogin from '../models/UserLogin';
+import User from '../models/User';
 
 interface Request{
   login: string;
@@ -8,16 +8,16 @@ interface Request{
 }
 
 interface Response {
-  user: UserLogin;
+  user: User;
 }
 
 class AuthenticateUserService {
   public async execute({ login, password }: Request): Promise<Response> {
-    const usersRepository = getRepository(UserLogin);
+    const usersRepository = getRepository(User);
 
-    const user = await usersRepository.findOne({ where: { login } });
+    const user = await usersRepository.findOne({ where: { login, password } });
 
-    if (!user) {
+    if (!user) {      
       throw new Error('Erro');
     }
 

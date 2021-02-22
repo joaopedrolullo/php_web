@@ -49,11 +49,11 @@ function Login() {
               <input type="password" placeholder="Senha" name="passwaord" maxLength={30} value={password} onChange={event => setPassword(event.target.value)} />
             </div>
 
-            {/* <button className="confirm-button" type="submit" >Entrar</button> */}
+            <button className="confirm-button" type="submit" >Entrar</button>
 
-            <Link to="/app">
+            {/* <Link to="/app">
               <button>Entrar</button>
-            </Link>
+            </Link> */}
           </form>
         </div>
       </div>
