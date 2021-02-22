@@ -5,7 +5,7 @@ import Customer from './Customer';
 
 @Entity('customerAddresses')
 export default class CustomerAddresses {
-  @PrimaryGeneratedColumn() 
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @OneToOne(() => Address)
