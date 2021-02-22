@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { createQueryBuilder, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import Customer from '../models/Customer';
 import CustomerAddress from '../models/CustomerAddress';
 
 interface AddressItem {
-  addresses: number;
+  id: number;
 }
 
 export default {
@@ -21,10 +21,7 @@ export default {
 
     const customerRepository = getRepository(Customer);
 
-    const customer = await createQueryBuilder("customers")
-      .leftJoinAndSelect("customers.customer_addresses", "customer_addresses")
-      .where("customers.id = :id", { customer_id: id })
-      .getOne();
+    const customer = await customerRepository.findOneOrFail(id);
 
     return response.json(customer);
   },
@@ -51,15 +48,14 @@ export default {
   
     await customerRepository.save(customer);
 
-    const customer_id = customer.id;
+    const customerId = customer.id;
 
     const addressRepository = getRepository(CustomerAddress);    
-    
+
     const addressCustomer = addresses.map((addressItem: AddressItem) => {
       return {
-        id: null,
-        address_id: addressItem.addresses,
-        customer_id,
+        addressId: addressItem.id,
+        customerId,
       };
     });
 

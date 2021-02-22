@@ -30,7 +30,7 @@ function Customer() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-
+    
     await api.post('customers', {
       name,
       date_birth,

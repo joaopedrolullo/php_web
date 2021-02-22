@@ -42,14 +42,14 @@ export class createUsers1613657923735 implements MigrationInterface {
     }));
 
     await queryRunner
-       .manager
-       .createQueryBuilder()
-       .insert()
-       .into('users')
-       .values([
-         { name: 'Administrador', login: 'ADMIN', email: 'admin@admin.com', password: '1234' },
-       ])
-       .execute()
+      .manager
+      .createQueryBuilder()
+      .insert()
+      .into('users')
+      .values([
+        { name: 'Administrador', login: 'admin', email: 'admin@admin.com', password: '1234' },
+      ])
+      .execute()
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

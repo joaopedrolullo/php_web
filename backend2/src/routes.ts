@@ -2,13 +2,12 @@ import { Router } from 'express';
 import AddressesController from './controllers/AddressesController'
 import UsersController from './controllers/UsersController'
 import CustomersController from './controllers/CustomersController'
-import LoginController from './controllers/LoginController';
 
 const routes = Router();
 
 // Endereços
 routes.get('/addresses', AddressesController.index);
-routes.get('/address/:id', AddressesController.show);
+routes.get('/addresses/:id', AddressesController.show);
 routes.post('/addresses', AddressesController.create);
 routes.put('/addresses/:id', AddressesController.update);
 routes.delete('/addresses/:id', AddressesController.delete);
@@ -26,8 +25,5 @@ routes.get('/customer/:id', CustomersController.show);
 routes.post('/customers', CustomersController.create);
 routes.put('/customers/:id', CustomersController.update);
 routes.delete('/customers/:id', CustomersController.delete);
-
-//Login
-routes.post('/login', LoginController.validate);
 
 export default routes;

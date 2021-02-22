@@ -8,6 +8,17 @@ import api from '../services/api';
 
 import '../styles/pages/form.css';
 
+interface Address {
+  id: number;
+  address: string;
+  complement: string;
+  city: string;
+  state: string;
+  country: string;
+  zip_code: string;
+}
+
+
 interface CustomerParams {
   id: string;
 }
@@ -31,6 +42,7 @@ function Customer() {
       setCpf(response.data.cpf);
       setRg(response.data.rg);
       setPhone(response.data.phone);
+      setAddressItems(response.data.address);
     });
   }, [params.id]);
 
@@ -42,13 +54,39 @@ function Customer() {
       date_birth,
       cpf,
       rg,
-      phone
+      phone,
+      addresses: addressItems
     });
 
     alert('Alteração realizada com sucesso!');
 
     history.push('/customers');
   };
+
+  const [addressItems, setAddressItems] = useState([
+    { address: ''}
+  ]);
+
+  function addNewAddressItem() {
+    setAddressItems([
+      ...addressItems,
+      { address: ''}
+    ])
+  };
+
+  function setAddressItemValue(position: number, field: string, value: string) {
+    const updatedAddressItems = addressItems.map((addressItem, index) => {
+        if (index === position) {
+            return { ...addressItem, [field]: value }
+        }
+
+        return addressItem;
+    });
+
+    setAddressItems(updatedAddressItems);
+  };
+
+  const [addresses, setAddresses] = useState<Address[]>([]);
 
   return(
     <div id="page">
@@ -88,6 +126,31 @@ function Customer() {
               <div className="input-block">
                 <label htmlFor="celular">Celular</label>
                 <InputMask mask="(99)99999-9999" id="celular" value={phone} onChange={event => setPhone(event.target.value)} />
+              </div>
+
+              <div className="address">
+                <fieldset>
+                  <legend>
+                    Endereço
+                    <button type="button" onClick={addNewAddressItem}>
+                      + Novo Endereço
+                    </button>
+                  </legend>                 
+                  
+                  {addressItems.map((addressItem, index) => {
+                    return (
+                      <div key={addressItem.address} className="schedule-item">
+                        <select onChange={e => setAddressItemValue(index, 'addresses', e.target.value)}>
+                          <option value="">Selecione uma opção</option>
+                          
+                          {addresses.map((address) => (
+                            <option value={address.id} >{address.address}</option>
+                          ))}
+                        </select>
+                      </div>
+                    );
+                  })}  
+                </fieldset>                                 
               </div>
 
               <button className="confirm-button" type="submit" >Confirmar</button>
