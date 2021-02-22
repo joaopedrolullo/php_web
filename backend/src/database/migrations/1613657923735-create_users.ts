@@ -17,25 +17,39 @@ export class createUsers1613657923735 implements MigrationInterface {
 
         {
           name: 'name',
-          type: 'varchar'
+          type: 'varchar',
+          length: '100',
         },
 
         {
           name: 'login',
-          type: 'varchar'
+          type: 'varchar',
+          length: '40',
         },
 
         {
           name: 'email',
-          type: 'varchar'
+          type: 'varchar',
+          length: '80',
         },
 
         {
           name: 'password',
-          type: 'varchar'
+          type: 'varchar',
+          length: '30',
         },
       ]
     }));
+
+    await queryRunner
+       .manager
+       .createQueryBuilder()
+       .insert()
+       .into('users')
+       .values([
+         { name: 'Administrador', login: 'ADMIN', email: 'admin@admin.com', password: '1234' },
+       ])
+       .execute()
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

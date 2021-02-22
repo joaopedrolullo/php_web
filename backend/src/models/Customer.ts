@@ -1,7 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn} from 'typeorm';
 
-import Address from './Address';
-
 @Entity('customers')
 export default class Customer {
   @PrimaryGeneratedColumn('increment')
@@ -14,17 +12,11 @@ export default class Customer {
   date_birth: string;
   
   @Column()
-  cpf: string;
+  cpf: number;
   
   @Column()
-  rg: string;
+  rg: number;
   
   @Column()
   phone: string;
-
-  @OneToMany(() => Address, address => address.customer, {
-    cascade: ['insert', 'update']
-  })
-  @JoinColumn({ name: 'customer_id' })
-  address: Address[];
 }

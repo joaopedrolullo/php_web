@@ -7,6 +7,15 @@ export class createCustomerAddresses1613656055154 implements MigrationInterface 
       name: 'customer_addresses',
       columns: [
         {
+          name: 'id',
+          type: 'integer',
+          unsigned: true,
+          isPrimary: true,
+          isGenerated: true,
+          generationStrategy: 'increment',
+        },
+
+        {
           name: 'address_id',
           type: 'integer'
         },

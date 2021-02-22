@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi';
 import { MdEdit, MdDelete } from 'react-icons/md';
+
 import Sidebar from '../components/Sidebar';
+import api from '../services/api';
 
 import '../styles/pages/customers-list.css';
-import api from '../services/api';
+import '../styles/components/grid.css';
 
 interface Customer {
   id: number;
@@ -61,7 +63,7 @@ function CustomersList() {
               {customers.map(customer => {
                 return(
                 <tr>
-                  <td className="column-icons">
+                  <td className="column-icons" key={customer.id}>
                     <Link to={`/customer/${customer.id}`}>
                       <i><MdEdit size={25} /></i>
                     </Link>
@@ -85,7 +87,7 @@ function CustomersList() {
         </div>
       </div>
 
-      <Link to="/customer" className="create-customer">
+      <Link to="/customer/create" className="create-customer">
         <FiPlus size={32} color="#FFF"></FiPlus>
       </Link> 
     </div>    

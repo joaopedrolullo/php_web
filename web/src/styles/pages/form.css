@@ -81,6 +81,60 @@ form.form .input-block input {
     padding: 0 16px;
 }
 
+.address {
+    margin-top: 1rem;
+}
+
+.address fieldset {
+    border: 0;
+}
+
+.address fieldset legend {
+    font: 16px;
+    color: #32264D;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1.0rem;
+    border-bottom: 1px solid #b3b3b3;
+}
+
+.address fieldset legend button {
+    width: 150px;
+    height: 25px;
+    border: 0;
+    cursor: pointer;
+    background: #19222a;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: 800;
+    transition: background-color 0.2s;
+}
+
+.address fieldset legend button:hover {
+    background: rgba(0, 0, 0, 0.7)
+}
+
+.address fieldset select {
+    position: relative;
+}
+
+.address fieldset select+select {
+    margin-top: 1.4rem;
+}
+
+.address fieldset select {
+    width: 100%;
+    margin-top: 0.8rem;
+    border-radius: 5px;
+    background: #F8F8FC;
+    border: 1px solid #E6E6F0;
+    outline: 0;
+    padding: 0 16px;
+    font: 600 18px Nunito, sans-serif;
+}
+
 @media (min-width: 700px) {
     #page-form {
         max-width: 100%;

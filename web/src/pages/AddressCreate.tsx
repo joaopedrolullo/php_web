@@ -1,6 +1,6 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import InputMask from "react-input-mask";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { IoMdReturnLeft } from 'react-icons/io';
 
@@ -9,15 +9,9 @@ import api from '../services/api';
 
 import '../styles/pages/form.css';
 
-interface AddressParams {
-  id: string;
-}
-
 function Address() {
   const { goBack } = useHistory();
   const history  = useHistory();
-
-  const params = useParams<AddressParams>();
 
   const [address, setAddress] = useState('');
   const [complement, setComplement] = useState('');
@@ -26,21 +20,10 @@ function Address() {
   const [country, setCountry] = useState('');
   const [zip_code, setZipCode] = useState('');
 
-  useEffect(() => {
-    api.get(`address/${params.id}`).then(response => {
-      setAddress(response.data.address);
-      setComplement(response.data.complement);
-      setCity(response.data.city);
-      setState(response.data.state);
-      setCountry(response.data.country);
-      setZipCode(response.data.zip_code);
-    });
-  }, [params.id]);
-
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-      
-    await api.put(`addresses/${params.id}`, {
+
+    await api.post('addresses', {
       address,
       complement,
       city,
@@ -49,7 +32,7 @@ function Address() {
       zip_code
     });
 
-    alert('Alteração realizada com sucesso!');
+    alert('Cadastro realizado com sucesso!');
 
     history.push('/addresses');
   };

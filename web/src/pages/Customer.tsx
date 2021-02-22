@@ -25,7 +25,7 @@ function Customer() {
   const [phone, setPhone] = useState('');
 
   useEffect(() => {
-    api.get(`users/${params.id}`).then(response => {
+    api.get(`customer/${params.id}`).then(response => {
       setName(response.data.name);
       setDateBirth(response.data.date_birth);
       setCpf(response.data.cpf);
@@ -67,30 +67,30 @@ function Customer() {
             <form onSubmit={handleSubmit} className="form">
               <div className="input-block">
                 <label htmlFor="name">Nome</label>
-                <input id="name" maxLength={100} />
+                <input id="name" maxLength={100} defaultValue={name} onChange={event => setName(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="dt_nasc">Data de Nascimento</label>
-                <input id="dt_nasc" type="date" />
+                <input id="dt_nasc" type="date" defaultValue={date_birth} onChange={event => setDateBirth(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="cpf">CPF</label>
-                <InputMask mask="999-999-999-99" id="cpf" />
+                <InputMask mask="999.999.999-99" id="cpf" value={cpf} onChange={event => setCpf(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="rg">RG</label>
-                <input id="rg" maxLength={20} />
+                <input id="rg" maxLength={20} defaultValue={rg} onChange={event => setRg(event.target.value)} />
               </div>
 
               <div className="input-block">
                 <label htmlFor="celular">Celular</label>
-                <InputMask mask="(99)99999-9999" id="celular" />
+                <InputMask mask="(99)99999-9999" id="celular" value={phone} onChange={event => setPhone(event.target.value)} />
               </div>
 
-              <button className="confirm-button" type="submit" form="form">Confirmar</button>
+              <button className="confirm-button" type="submit" >Confirmar</button>
             </form>
           </div>
         </div>

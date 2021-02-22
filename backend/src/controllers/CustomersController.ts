@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import Customer from '../models/Customer';
+import CustomerAddress from '../models/CustomerAddress';
+
+interface AddressItem {
+  id: number;
+}
 
 export default {
   async index(request: Request, response: Response) {
@@ -28,6 +33,7 @@ export default {
       cpf,
       rg,
       phone,
+      addresses
     } = request.body;
   
     const customerRepository = getRepository(Customer);
@@ -41,7 +47,24 @@ export default {
     });
   
     await customerRepository.save(customer);
-  
+
+    const customer_id = customer.id;
+
+    // const addressRepository = getRepository(CustomerAddress);    
+    
+    const addressCustomer = addresses.map((addressItem: AddressItem) => {
+      return {
+        address_id: addressItem.id,
+        customer_id,
+      };
+    });
+
+    console.log(customer_id);
+    console.log(addresses);
+    console.log(addressCustomer.address_id);
+
+    // await addressRepository.save(addressCustomer);
+
     return response.status(201).json(customer);
   },
 

@@ -17,7 +17,8 @@ export class createCustomers1613768523574 implements MigrationInterface {
 
         {
           name: 'name',
-          type: 'varchar'
+          type: 'varchar',
+          length: '100',
         },
 
         {
@@ -27,12 +28,14 @@ export class createCustomers1613768523574 implements MigrationInterface {
 
         {
           name: 'cpf',
-          type: 'varchar'
+          type: 'integer',
+          length: '11',
         },
 
         {
           name: 'rg',
-          type: 'varchar'
+          type: 'integer',
+          length: '20',
         },
 
         {

@@ -17,27 +17,32 @@ export class createAdresses1613591600571 implements MigrationInterface {
 
         {
           name: 'address',
-          type: 'varchar'
+          type: 'varchar',
+          length: '80',
         },
 
         {
           name: 'complement',
-          type: 'varchar'
+          type: 'varchar',
+          length: '80',
         },
 
         {
           name: 'city',
-          type: 'varchar'
+          type: 'varchar',
+          length: '80',
         },
 
         {
           name: 'state',
-          type: 'varchar'
+          type: 'varchar',
+          length: '80',
         },
 
         {
           name: 'country',
-          type: 'varchar'
+          type: 'varchar',
+          length: '60',
         },
 
         {

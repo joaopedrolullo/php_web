@@ -1,7 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
 
-import Customer from './Customer';
-
 @Entity('addresses')
 export default class Address {
   @PrimaryGeneratedColumn('increment')
@@ -24,8 +22,4 @@ export default class Address {
   
   @Column()
   zip_code: string;
-
-  @ManyToOne(() => Customer, customer => customer.address)
-  @JoinColumn({ name: 'customer_id' })
-  customer: Customer;
 }

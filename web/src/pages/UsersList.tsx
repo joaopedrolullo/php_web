@@ -7,6 +7,7 @@ import Sidebar from '../components/Sidebar';
 import api from '../services/api';
 
 import '../styles/pages/users-list.css';
+import '../styles/components/grid.css';
 
 interface User {
   id: number;
@@ -59,7 +60,7 @@ function UsersList() {
               {users.map(user => {
                 return(
                   <tr>
-                    <td className="column-icons">
+                    <td className="column-icons" key={user.id}>
                       <Link to={`/user/${user.id}`}>
                         <i><MdEdit size={25} /></i>
                       </Link>

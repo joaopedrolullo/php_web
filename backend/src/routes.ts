@@ -9,6 +9,8 @@ const routes = Router();
 routes.get('/addresses', AddressesController.index);
 routes.get('/addresses/:id', AddressesController.show);
 routes.post('/addresses', AddressesController.create);
+routes.put('/addresses/:id', AddressesController.update);
+routes.delete('/addresses/:id', AddressesController.delete);
 
 // Usuários
 routes.get('/users', UsersController.index);
