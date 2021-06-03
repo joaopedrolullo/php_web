@@ -13,5 +13,5 @@ Para executar este projeto, faça os seguintes passos:
     
   - Na pasta web, execute o comando: yarn start
 5 - Usuário e senha padrões:
-  - Login: admin
+  - Login: ADMIN
   - Senha: 1234
